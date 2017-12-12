@@ -36,16 +36,16 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport')(passport);
+
 // Set users routes
 app.use('/users', users);
 
 app.use(express.static(path.join(__dirname, 'ng-src/dist')));
 
-// index route
+// Index route
 app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname,'ng-src/dist/index.html'))
-})
-
+});
 
 app.listen(port, function () {
     console.log(`Server running on localhost:${port}`);
