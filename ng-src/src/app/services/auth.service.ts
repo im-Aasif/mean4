@@ -5,6 +5,7 @@ import { catchError, map, tap } from "rxjs/operators";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { tokenNotExpired } from "angular2-jwt";
 import { UserResponse } from '../models/user-response';
+import { Config } from '../models/config';
 
 @Injectable()
 export class AuthService {
@@ -18,7 +19,9 @@ export class AuthService {
   registerUser(user) {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json')
-    return this.http.post<UserResponse>('http://192.168.0.66:3000/users/register', user, { headers: headers }).pipe(
+    const validUrl = `http://${Config.host.ipAddr}${Config.apis.register}`
+    console.log(validUrl)
+    return this.http.post<UserResponse>(validUrl, user, { headers: headers }).pipe(
       tap((res) => res)
     );
   }
@@ -26,7 +29,9 @@ export class AuthService {
   authenticateUser(user) {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json')
-    return this.http.post<UserResponse>('http://192.168.0.66:3000/users/authenticate', user, { headers: headers }).pipe(
+    const validUrl = `http://${Config.host.ipAddr}${Config.apis.authenticate}`
+    console.log(validUrl)
+    return this.http.post<UserResponse>(validUrl, user, { headers: headers }).pipe(
       tap((res) => res)
     );
   }
@@ -36,7 +41,9 @@ export class AuthService {
     headers.set('Content-Type', 'application/json')
     this.loadToken();
     headers.set('Authorization', this.authToken);
-    return this.http.get<UserResponse>('http://192.168.0.66:3000/users/profile', { 
+    const validUrl = `http://${Config.host.ipAddr}${Config.apis.profile}`
+    
+    return this.http.get<UserResponse>(validUrl, { 
       headers: new HttpHeaders().set('Authorization', this.authToken)
     }).pipe(
       tap((res) => res)
