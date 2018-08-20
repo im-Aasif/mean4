@@ -39,7 +39,6 @@ export class AuthService {
     const validUrl = `http://${Config.host.ipAddr}${Config.apis.authenticate}`
     console.log(validUrl)
     return this.http.post<UserResponse>(validUrl, user, { headers: headers }).pipe(
->>>>>>> origin/master
       tap((res) => res)
     );
   }
