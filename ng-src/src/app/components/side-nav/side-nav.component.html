@@ -1,0 +1,38 @@
+<mat-toolbar color="primary" class="nav-header">
+  <button mat-icon-button (click)="sideNav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div aria-hidden="true" routerLink="/home" class="app-name">MEAN4+</div>
+</mat-toolbar>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sideNav class="example-sidenav" mode="over">
+    <mat-nav-list>
+      <mat-list-item routerLink="/dashboard" *ngIf="authService.loggedIn()" routerLinkActive="active" (click)="sideNav.toggle()">
+        <mat-icon mat-list-icon>dashboard</mat-icon>
+        <h4 mat-line>Dashboard</h4>
+      </mat-list-item>
+      <mat-list-item routerLink="/profile" *ngIf="authService.loggedIn()" routerLinkActive="active" (click)="sideNav.toggle()">
+        <mat-icon mat-list-icon>face</mat-icon>
+        <h4 mat-line>Profile</h4>
+      </mat-list-item>      
+      <mat-list-item class="sidenav-list-item" routerLink="/login" *ngIf="!authService.loggedIn()" routerLinkActive="active" (click)="sideNav.toggle()">
+        <mat-icon mat-list-icon >lock</mat-icon>
+        <h4 mat-line>Login</h4>
+      </mat-list-item>      
+      <mat-list-item routerLink="/register" *ngIf="!authService.loggedIn()" routerLinkActive="active" (click)="sideNav.toggle()">
+        <mat-icon mat-list-icon>account_box</mat-icon>
+        <h4 mat-line>Register</h4>
+      </mat-list-item>      
+      <mat-list-item *ngIf="authService.loggedIn()" (click)="onLogOut(); sideNav.toggle()">
+        <mat-icon mat-list-icon>exit_to_app</mat-icon>
+        <h4 mat-line>Logout</h4>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="container ">
+      <flash-messages></flash-messages>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
@@ -23,6 +24,8 @@ import { AuthInterceptor } from './interceptors/auth.service';
 
 // 3rd party imports
 import { FlashMessagesModule } from "angular2-flash-messages";
+import { NgMaterialModule } from './modules/ng-material/ng-material.module';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
 
 
 @NgModule({
@@ -33,15 +36,18 @@ import { FlashMessagesModule } from "angular2-flash-messages";
     RegisterComponent,
     DashboardComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
     FlashMessagesModule,
-    HttpInterceptorModule
+    HttpInterceptorModule,
+    NgMaterialModule
   ],
   providers: [    
     ValidateService,
