@@ -18,6 +18,6 @@
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.1"
   },
-  "author": "",
+  "author": "Aasif Tamboli",
   "license": "ISC"
 }

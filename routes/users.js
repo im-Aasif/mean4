@@ -6,9 +6,9 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/db');
 
 /**
- * GET /users/register
+ * POST /users/register
  */
-router.post('/register', function(req, res) {
+router.post('/register', function (req, res) {
     let newUser = new User({
         name: req.body.name,
         email: req.body.email,
@@ -16,7 +16,7 @@ router.post('/register', function(req, res) {
         password: req.body.password
     });
 
-    User.addUser(newUser, function(err, user){
+    User.addUser(newUser, function (err, user) {
         if (err) {
             res.json({
                 success: false,
@@ -32,20 +32,20 @@ router.post('/register', function(req, res) {
 });
 
 /**
- * GET /users/authenticate
+ * POST /users/authenticate
  */
-router.post('/authenticate', function(req, res) {
+router.post('/authenticate', function (req, res) {
     const username = req.body.username;
     const password = req.body.password;
-    User.getUserByUsername(username, function(err, user) {
+    User.getUserByUsername(username, function (err, user) {
         if (err) throw err;
-        if(!user) {
+        if (!user) {
             return res.json({
                 success: false,
                 msg: 'user not found'
             });
         }
-        User.comparePassword(password, user.password, function(err, isMatch) {
+        User.comparePassword(password, user.password, function (err, isMatch) {
             if (err) throw err;
             if (isMatch) {
                 const token = jwt.sign(user.toJSON(), config.secret, {
@@ -74,7 +74,7 @@ router.post('/authenticate', function(req, res) {
 /**
  * GET /users/profile
  */
-router.get('/profile', passport.authenticate('jwt', {session: false}), function(req, res) {
+router.get('/profile', passport.authenticate('jwt', { session: false }), function (req, res) {
     res.json({
         success: true,
         msg: 'Profile found',
