@@ -14,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
         'Authorization': 'Bearer ' + localStorage.getItem('id_token'),
         'Content-Type': 'application/json'
       }
-    });
+    });    
     return next.handle(authReq);
   }
 }

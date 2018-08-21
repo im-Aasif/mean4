@@ -18,31 +18,18 @@ export class AuthService {
   }
 
   registerUser(user) {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json')
-    return this.http.post<UserResponse>('http://localhost:3000/users/register', user, { headers: headers }).pipe(
-      tap((res) => res)
-    );
+    return this.http.post<UserResponse>('http://localhost:3000/users/register', user)
+    .pipe(tap((res) => res));
   }
 
   authenticateUser(user) {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json')
-    return this.http.post<UserResponse>('http://localhost:3000/users/authenticate', user, { headers: headers }).pipe(
-      tap((res) => res)
-    );
+    return this.http.post<UserResponse>('http://localhost:3000/users/authenticate', user)
+    .pipe(tap((res) => res));
   }
 
   getProfile() {
-    let headers = new HttpHeaders();
-    headers.set('Content-Type', 'application/json')
-    this.loadToken();
-    headers.set('Authorization', this.authToken);
-    return this.http.get<UserResponse>('http://localhost:3000/users/profile', { 
-      headers: new HttpHeaders().set('Authorization', this.authToken)
-    }).pipe(
-      tap((res) => res)
-    );
+    return this.http.get<UserResponse>('http://localhost:3000/users/profile')
+    .pipe(tap((res) => res));
   }  
 
   storeUserData(token, user) {
