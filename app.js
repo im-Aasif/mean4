@@ -9,7 +9,7 @@ const config = require('./config/db');
 
 // Mongoose connection
 mongoose.connect(config.dbUrl, {
-    useMongoClient: true
+    useNewUrlParser: true
 });
 
 mongoose.connection.on('connected', function() {

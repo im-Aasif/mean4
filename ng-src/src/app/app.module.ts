@@ -26,6 +26,7 @@ import { AuthInterceptor } from './interceptors/auth.service';
 import { FlashMessagesModule } from "angular2-flash-messages";
 import { NgMaterialModule } from './modules/ng-material/ng-material.module';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @NgModule({
@@ -52,7 +53,7 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
   providers: [    
     ValidateService,
     FlashMessagesService,
-    AuthService
+    AuthService,
   ],
   bootstrap: [AppComponent]
 })

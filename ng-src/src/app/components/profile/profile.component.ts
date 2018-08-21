@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
         this.user = data.user;
       },
       err => {
-        console.log(err);
+        // console.log(err);
         this.router.navigate(['login'])  
       }
     )

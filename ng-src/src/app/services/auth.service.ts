@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs/Observable";
-import { of } from "rxjs/observable/of";
-import { catchError, map, tap } from "rxjs/operators";
+import { tap } from "rxjs/operators";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { tokenNotExpired } from "angular2-jwt";
+
 import { UserResponse } from '../models/user-response';
-import { Config } from '../models/config';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable()
 export class AuthService {
   authToken: any;
   user: any;
+  jwtHelper: JwtHelperService;
 
   constructor(
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,    
+  ) { 
+    this.jwtHelper = new JwtHelperService();
+  }
 
   registerUser(user) {
     let headers = new HttpHeaders();
@@ -55,7 +56,8 @@ export class AuthService {
   }
 
   loggedIn() {
-    return tokenNotExpired('id_token');
+    const token = localStorage.getItem('id_token');
+    return token != null && !this.jwtHelper.isTokenExpired(token);
   }
 
   logOut() {

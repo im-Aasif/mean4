@@ -11,6 +11,7 @@ What you need to run this app:
 * `node` and `npm`
 * Ensure you're running the latest versions Node `v8.x.x`+ (or `v9.x.x`) and NPM `5.x.x`+
 * Angular CLI `v6.x.x`
+* MongoDB installed on the system
 
 ## Get the code
 * Either clone this repository or fork it on GitHub and clone your fork
