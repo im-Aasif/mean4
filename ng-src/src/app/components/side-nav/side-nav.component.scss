@@ -19,14 +19,15 @@
 
 .nav-header {    
     position: fixed;
-    height: 40px;
     top: 0;
     left: 0;
     right: 0;
+    height: 40px;
 }
 
 .app-name {
     margin-left: 8px;
+    cursor: pointer;
 }
 
 .material-icon {

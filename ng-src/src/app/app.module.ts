@@ -3,7 +3,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // User defined modules
 import { AppRoutingModule } from "./modules/app-routing/app-routing.module";
@@ -18,15 +17,13 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ValidateService } from './services/validate.service';
-import { FlashMessagesService } from 'angular2-flash-messages/module/flash-messages.service';
 import { AuthService } from './services/auth.service';
-import { AuthInterceptor } from './interceptors/auth.service';
+import { NgMaterialModule } from './modules/ng-material/ng-material.module';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
 
 // 3rd party imports
 import { FlashMessagesModule } from "angular2-flash-messages";
-import { NgMaterialModule } from './modules/ng-material/ng-material.module';
-import { SideNavComponent } from './components/side-nav/side-nav.component';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { FlashMessagesService } from 'angular2-flash-messages/module/flash-messages.service';
 
 
 @NgModule({

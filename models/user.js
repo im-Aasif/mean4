@@ -6,28 +6,17 @@ mongoose.Promise = global.Promise;
  * User schema
  */
 const UserSchema = mongoose.Schema({
-    name: {
-        type: String
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    username: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    }
+    name: { type: String },
+    email: { type: String, required: true },
+    username: { type: String, required: true },
+    password: { type: String, required: true }
 });
 
 const User = module.exports = mongoose.model('User', UserSchema);
 
-module.exports.addUser = function(user, callback) {
-    bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash(user.password, salt, function(err, hash) {
+module.exports.addUser = function (user, callback) {
+    bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(user.password, salt, function (err, hash) {
             if (err) throw err;
             user.password = hash;
             user.save(callback);
@@ -35,18 +24,18 @@ module.exports.addUser = function(user, callback) {
     })
 }
 
-module.exports.getUserById = function(id, callback) {
+module.exports.getUserById = function (id, callback) {
     User.findById(id, callback);
 };
 
-module.exports.getUserByUsername = function(username, callback) {
-    const query = { username: username}
+module.exports.getUserByUsername = function (username, callback) {
+    const query = { username: username }
     User.findOne(query, callback);
 };
 
-module.exports.comparePassword = function(candidatePassword, hash, callback) {
-    bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
-        if(err) throw err;
+module.exports.comparePassword = function (candidatePassword, hash, callback) {
+    bcrypt.compare(candidatePassword, hash, function (err, isMatch) {
+        if (err) throw err;
         callback(null, isMatch);
     })
 }

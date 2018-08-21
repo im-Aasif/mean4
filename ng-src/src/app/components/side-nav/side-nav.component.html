@@ -14,15 +14,15 @@
       <mat-list-item routerLink="/profile" *ngIf="authService.loggedIn()" routerLinkActive="active" (click)="sideNav.toggle()">
         <mat-icon mat-list-icon>face</mat-icon>
         <h4 mat-line>Profile</h4>
-      </mat-list-item>      
+      </mat-list-item>
       <mat-list-item class="sidenav-list-item" routerLink="/login" *ngIf="!authService.loggedIn()" routerLinkActive="active" (click)="sideNav.toggle()">
-        <mat-icon mat-list-icon >lock</mat-icon>
+        <mat-icon mat-list-icon>lock</mat-icon>
         <h4 mat-line>Login</h4>
-      </mat-list-item>      
+      </mat-list-item>
       <mat-list-item routerLink="/register" *ngIf="!authService.loggedIn()" routerLinkActive="active" (click)="sideNav.toggle()">
         <mat-icon mat-list-icon>account_box</mat-icon>
         <h4 mat-line>Register</h4>
-      </mat-list-item>      
+      </mat-list-item>
       <mat-list-item *ngIf="authService.loggedIn()" (click)="onLogOut(); sideNav.toggle()">
         <mat-icon mat-list-icon>exit_to_app</mat-icon>
         <h4 mat-line>Logout</h4>
@@ -30,7 +30,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="container ">
+    <div class="container">
       <flash-messages></flash-messages>
       <router-outlet></router-outlet>
     </div>
